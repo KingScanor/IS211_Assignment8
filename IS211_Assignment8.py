@@ -194,9 +194,9 @@ class TimedGameProxy:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description= "Play the Pig dice game.")
-    parser.add_argument("--player1", choices=["human", "computer"], default="human", help="Type of player 1" )
-    parser.add_argument("--player2", choices=["human", "computer"], default="human", help="Type of player 2")
-    parser.add_argument("--timed", action="store_true", help="Enable timed game mode")
+    parser.add_argument ("--player1", choices=["human", "computer"], default="human", help="Type of player 1" )
+    parser.add_argument ("--player2", choices=["human", "computer"], default="human", help="Type of player 2")
+    parser.add_argument ("--timed", action="store_true", help="Enable timed game mode")
     args = parser.parse_args()
 
     game = TimedGameProxy(args.player1, args.player2, args.timed)
