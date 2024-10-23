@@ -53,9 +53,9 @@ class ComputerPlayer(Player):
     def make_decision(self):
         hold_threshold = min(25, 100 - self.score)
         if self.turn_total >= hold_threshold:
-            return '2'
+            return 'h'
         else:
-            return '1'
+            return 'r'
 
 class Die:
     """
@@ -114,18 +114,18 @@ class Game:
 
             if isinstance(self.current_player, ComputerPlayer):
                 decision = self.current_player.make_decision()
-                print (f"{self.current_player.name} chooses to {'Roll' if decision == '1' else 'Hold'}")
+                print (f"{self.current_player.name} chooses to {'Roll' if decision == 'r' else 'Hold'}")
             else:
-                decision = input ("Roll (1) or Hold (2)?").lower()
+                decision = input ("Roll (r) or Hold (h)?").lower()
 
-            if decision == '1':
+            if decision == 'r':
                 if not self.current_player.roll_die(self.die):
                     self.switch_turn()
-            elif decision == "2":
+            elif decision == "h":
                 self.current_player.hold()
                 self.switch_turn()
             else:
-                print ("Invalid input, Please Type '1' for Roll or '2' for Hold.")
+                print ("Invalid input, Please Type 'r' for Roll or 'h' for Hold.")
             if self.player1.score >= 100 or self.player2.score >= 100:
                 self.check_winner()
                 return
@@ -161,7 +161,7 @@ class TimedGameProxy:
         A proxy class for the Game class that adds a time limit to the game.
 
         Attributes:
-            game (Game): The Game object being proxied.
+            game (Game):  The Game object being proxied.
             timed (bool): Whether the game is timed or not.
             start_time (float): The time the game started.
             time_limit (int): The time limit for the game in seconds (default 60).
